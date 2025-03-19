@@ -2,8 +2,8 @@ using UnityEngine;
 
 public abstract class Unit : MonoBehaviour
 {
-    private Piece _pieceParent;
-    protected Piece PieceParent { get => _pieceParent; }
+    protected Piece _pieceParent;
+    public Piece PieceParent { get => _pieceParent; }
 
     private void Start()
     {

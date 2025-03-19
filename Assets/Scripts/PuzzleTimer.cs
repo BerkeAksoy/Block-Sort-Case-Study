@@ -97,4 +97,10 @@ public class PuzzleTimer : MonoBehaviour
     {
         timerRunning = false;
     }
+
+    public void DisplayWinText()
+    {
+        StopTimer();
+        _timerText.text = "You Win";
+    }
 }

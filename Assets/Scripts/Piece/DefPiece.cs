@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class DefPiece : Piece
 {
-    private List<DefLegoUnit> _units;
-    private List<SlotLegoUnit> _occupiedSlotUnits = new List<SlotLegoUnit>();
+    [SerializeField] private List<DefLegoUnit> _units;
+    [SerializeField] private List<SlotLegoUnit> _occupiedSlotUnits = new List<SlotLegoUnit>();
     private bool _screwed, _onSlot;
 
     public List<SlotLegoUnit> OccupiedSlotUnits { get => _occupiedSlotUnits; set => _occupiedSlotUnits = value; }

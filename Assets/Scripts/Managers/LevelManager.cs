@@ -11,13 +11,17 @@ public class LevelManager : BaseSingleton<LevelManager>
     private int _currentLevel;
     private int _stageCount;
     private int _currentStageIndex;
+    private int _slotPieceCountToComplete;
     private float _levelTime;
+
+    public int SlotPieceCountToComplete { get => _slotPieceCountToComplete; }
 
     [System.Serializable]
     public class LevelData
     {
         public int LevelTime;
         public int StageCount;
+        public int[] SlotPieceCountToComplete;
         public PieceDataArrayWrapper[] Pieces;
     }
 
@@ -90,6 +94,7 @@ public class LevelManager : BaseSingleton<LevelManager>
         }
 
         PieceData[] currentStagePieces = levelData.Pieces[_currentStageIndex].StagePieces;
+        _slotPieceCountToComplete = levelData.SlotPieceCountToComplete[_currentStageIndex];
         int slotLegoCount = 0, defLegoCount = 0;
 
         if (_currentStageIndex == 0)

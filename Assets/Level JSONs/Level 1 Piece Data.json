@@ -1,6 +1,7 @@
 {
   "LevelTime": 45,
   "StageCount": 1,
+  "SlotPieceCountToComplete": [1],
   "Pieces": [
     {
       "StagePieces": [

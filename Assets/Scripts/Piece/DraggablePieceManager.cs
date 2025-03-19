@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public static class DraggablePieceManager
 {
@@ -12,6 +13,8 @@ public static class DraggablePieceManager
     private static Vector3 _originalPosition;
     private static Vector3 _offset;
     private static Plane _dragPlane;
+
+    public static event Action OnSlotCompleted;
     
     private static void Initialize()
     {
@@ -81,7 +84,11 @@ public static class DraggablePieceManager
             _originalPosition = validPos.Value;
 
             _curDefPiece.OnSlot = true;
-            //IsSlotCompleted(_curDefPiece.OccupiedSlotUnits[0].PieceParent);
+            bool slotCompleted = ((SlotPiece)_curDefPiece.OccupiedSlotUnits[0].PieceParent).IsSlotCompleted(_curDefPiece.PieceClr);
+            if (slotCompleted)
+            {
+                OnSlotCompleted?.Invoke();
+            }
         }
         else
         {
@@ -90,7 +97,7 @@ public static class DraggablePieceManager
         }
 
         if (_projection != null)
-            Object.Destroy(_projection);
+            UnityEngine.Object.Destroy(_projection);
         
         _isDragging = false;
         _curDefPiece = null;
@@ -99,10 +106,12 @@ public static class DraggablePieceManager
     private static List<int> RefreshOccupiedSlotUnits()
     {
         List<int> preValues = new List<int>();
+        List<DefLegoUnit> defLegoUnits = _curDefPiece.GetUnits();
 
-        for(int i = 0; i < _curDefPiece.OccupiedSlotUnits.Count; i++)
+        for (int i = 0; i < _curDefPiece.OccupiedSlotUnits.Count; i++)
         {
             preValues.Add(_curDefPiece.OccupiedSlotUnits[i].CurLegoValue);
+            _curDefPiece.OccupiedSlotUnits[i].HeldLegoUnit.Remove(defLegoUnits[i]);
 
             if (_curDefPiece.GetUnits()[i].LegoValue == 1)
             {
@@ -133,11 +142,12 @@ public static class DraggablePieceManager
 
     private static void ReApplySlotValues(List<int> preValues)
     {
-        Debug.Log(_curDefPiece.OccupiedSlotUnits.Count);
+        List<DefLegoUnit> defLegoUnits = _curDefPiece.GetUnits();
 
-        for(int i=0; i< _curDefPiece.OccupiedSlotUnits.Count; i++)
+        for (int i = 0; i < _curDefPiece.OccupiedSlotUnits.Count; i++)
         {
             _curDefPiece.OccupiedSlotUnits[i].CurLegoValue = preValues[i];
+            _curDefPiece.OccupiedSlotUnits[i].HeldLegoUnit.Add(defLegoUnits[i]);
         }
     }
 
@@ -202,6 +212,8 @@ public static class DraggablePieceManager
         {
             for (int i = 0; i < defLegoUnits.Count; i++)
             {
+                occupiedSlotUnits[i].HeldLegoUnit.Add(defLegoUnits[i]);
+
                 if (defLegoUnits[i].LegoValue == 1)
                 {
                     occupiedSlotUnits[i].CurLegoValue = 1;
@@ -245,10 +257,10 @@ public static class DraggablePieceManager
     private static void CreateProjection()
     {
         if (_projection != null)
-            Object.Destroy(_projection);
+            UnityEngine.Object.Destroy(_projection);
 
         Vector3 pos = _curDefPiece.transform.position + new Vector3 (0, 0, 1);
-        _projection = Object.Instantiate(_curDefPiece.gameObject, pos, _curDefPiece.transform.rotation);
+        _projection = UnityEngine.Object.Instantiate(_curDefPiece.gameObject, pos, _curDefPiece.transform.rotation);
         
         // Disable collider on the _projection.
         Collider col = _projection.GetComponent<Collider>();
