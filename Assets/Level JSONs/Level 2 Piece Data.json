@@ -1,0 +1,41 @@
+{
+  "LevelTime": 300,
+  "StageCount": 2,
+  "Pieces": [
+    [
+      {
+        "Color": "Red",
+        "ShapeArray": [
+          [1, 1],
+          [1, 1]
+        ],
+        "Screwed": false,
+        "IsSlot": false,
+        "Position": [2, 3]
+      },
+      {
+        "Color": "Blue",
+        "ShapeArray": [
+          [1],
+          [1],
+          [1, 3]
+        ],
+        "Screwed": false,
+        "IsSlot": false,
+        "Position": [5, 1]
+      }
+    ],
+    [
+      {
+        "Color": "Green",
+        "ShapeArray": [
+          [1, 1],
+          [1, 1]
+        ],
+        "Screwed": false,
+        "IsSlot": false,
+        "Position": [2, 0]
+      }
+    ]
+  ]
+}
