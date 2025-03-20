@@ -35,7 +35,7 @@ public abstract class Piece : MonoBehaviour
         _boardManager = BoardManager.Instance;
     }
 
-    protected void CreateLegoUnits(bool isSlot)
+    protected void CreateLegoUnits(bool isSlot, bool isScrewed = false)
     {
         for (int row = 0; row < _shapeArray.Count; row++)
         {
@@ -66,6 +66,7 @@ public abstract class Piece : MonoBehaviour
                     else
                     {
                         DefLegoUnit newDefLegoUnit = legoGO.transform.GetChild(0).AddComponent<DefLegoUnit>();
+                        if (isScrewed) { Instantiate(_boardManager.FullScrew, legoGO.transform); }
 
                         newDefLegoUnit.LegoValue = 1;
                         newDefLegoUnit.LegoColor = _pieceColor;
@@ -77,8 +78,6 @@ public abstract class Piece : MonoBehaviour
                 {
                     legoGO = DefineCornersForTriangleLego(row, col, cellValue);
                     legoGO.transform.localPosition = position;
-
-                    ApplyHalfUnitRotation(legoGO, cellValue);
 
                     if (isSlot)
                     {
@@ -95,12 +94,15 @@ public abstract class Piece : MonoBehaviour
                     else
                     {
                         DefLegoUnit newDefLegoUnit = legoGO.transform.GetChild(0).AddComponent<DefLegoUnit>();
+                        if (isScrewed) { Instantiate(_boardManager.HalfScrew, legoGO.transform); }
 
                         newDefLegoUnit.LegoValue = cellValue;
                         newDefLegoUnit.LegoColor = _pieceColor;
 
                         _DefUnits.Add(newDefLegoUnit);
                     }
+
+                    ApplyHalfUnitRotation(legoGO, cellValue);
                 }
                 else
                 {

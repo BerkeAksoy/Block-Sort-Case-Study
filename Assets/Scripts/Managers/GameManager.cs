@@ -22,6 +22,14 @@ public class GameManager : BaseSingleton<GameManager>
         _timerUI.InitTimer();
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            LevelManager.Instance.LoadNextStage();
+        }
+    }
+
     private void CheckWinCondition()
     {
         completedSlotCount++;

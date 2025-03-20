@@ -154,7 +154,8 @@ public class LevelManager : BaseSingleton<LevelManager>
                 newDefPiece.Initialize(pieceColor, shapeList, pieceData.Screwed);
                 defLegoCount++;
             }
-             
+            
+            _piecesOnStage.Add(pieceObj);
             pieceObj.transform.position = new Vector3(pieceData.Position[0], pieceData.Position[1], pieceData.Position[2]);
         }
     }

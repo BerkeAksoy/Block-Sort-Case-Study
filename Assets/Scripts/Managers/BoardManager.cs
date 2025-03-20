@@ -3,7 +3,7 @@ using UnityEngine;
 public class BoardManager : BaseSingleton<BoardManager>
 {
     [SerializeField] private GameObject _fullAllHardLego, _fullAllRoundedLego, _fullOneRoundedLego, _fullThreeRoundedLego, _fullTwoParallelRoundedLego, _fullTwoRoundedLego,
-        _halfAllHardLego, _halfAllRoundedLego, _halfRightRoundedLego, _halfUpRoundedLego;
+        _halfAllHardLego, _halfAllRoundedLego, _halfRightRoundedLego, _halfUpRoundedLego, _fullScrew, _halfScrew;
 
     [SerializeField] private Material[] _materials;
     [SerializeField] private Material _projectionMaterial;
@@ -18,6 +18,8 @@ public class BoardManager : BaseSingleton<BoardManager>
     public GameObject HalfAllRoundedLego { get => _halfAllRoundedLego; }
     public GameObject HalfUpRoundedLego { get => _halfUpRoundedLego; }
     public GameObject HalfRightRoundedLego { get => _halfRightRoundedLego; }
+    public GameObject FullScrew { get => _fullScrew; }
+    public GameObject HalfScrew { get => _halfScrew; }
 
     public Material[] Materials {  get => _materials; }
     public Material ProjectionMaterial {  get => _projectionMaterial; }

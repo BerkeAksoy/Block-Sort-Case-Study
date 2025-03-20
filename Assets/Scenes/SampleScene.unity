@@ -235,7 +235,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timerText: {fileID: 336128789}
-  _levelTime: 300
   _warningStart: 30
 --- !u!1 &130606186
 GameObject:
@@ -282,7 +281,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelJson:
-  - {fileID: 4900000, guid: 1829dc51ff259ae4e816dd681f620f4d, type: 3}
+  - {fileID: 4900000, guid: f688fa24171cbfb42bb15eb47e95b311, type: 3}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -900,6 +899,8 @@ MonoBehaviour:
   _halfAllRoundedLego: {fileID: 2426281007138833326, guid: 40153ef925966144689e34eb3407815d, type: 3}
   _halfRightRoundedLego: {fileID: 6394758279257333927, guid: b9b99e98e10d05947aaf4685fc0c86be, type: 3}
   _halfUpRoundedLego: {fileID: 2706530499158861674, guid: 273ae1a56ea69404082db4ae435ed888, type: 3}
+  _fullScrew: {fileID: 5231111813182198275, guid: 54f1b3ceb4d9fd645a6fdafac8705148, type: 3}
+  _halfScrew: {fileID: 2327063016118339675, guid: 26af392eb73bfb8419632b367e63c695, type: 3}
   _materials:
   - {fileID: 2100000, guid: 97c6eee8c76a2ca468fb9bcdab65a104, type: 2}
   - {fileID: 2100000, guid: 11ead385f81c5044ba17758dc5a478df, type: 2}

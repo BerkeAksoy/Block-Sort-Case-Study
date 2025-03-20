@@ -26,7 +26,7 @@ public class DefPiece : Piece
         gameObject.tag = "Draggable";
 
         SetPieceMaterial();
-        CreateLegoUnits(false);
+        CreateLegoUnits(false, screwed);
     }
 
 }
