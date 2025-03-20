@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class GameManager : BaseSingleton<GameManager>
@@ -33,10 +34,20 @@ public class GameManager : BaseSingleton<GameManager>
     private void CheckWinCondition()
     {
         completedSlotCount++;
+
         if (LevelManager.Instance.SlotPieceCountToComplete == completedSlotCount)
         {
             _timerUI.DisplayWinText();
+            StartCoroutine(LoadNext());
         }
+    }
+
+    private IEnumerator LoadNext()
+    {
+        yield return new WaitForSeconds(1f);
+        _timerUI.ContinueTimer();
+        completedSlotCount = 0;
+        LevelManager.Instance.LoadNextStage();
     }
 
 

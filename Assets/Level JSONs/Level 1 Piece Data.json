@@ -41,9 +41,9 @@
         {
           "Color": "Red",
           "ShapeArray": [
-            { "Row": [0, 1] },
-            { "Row": [0, 1] },
-            { "Row": [2, 1] }
+            { "Row": [0, 1, 0] },
+            { "Row": [1, 1, 1] },
+            { "Row": [0, 1, 0] }
           ],
           "Screwed": false,
           "IsSlot": false,

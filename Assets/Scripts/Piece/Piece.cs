@@ -139,8 +139,6 @@ public abstract class Piece : MonoBehaviour
             }
         }
 
-        Debug.Log(closedSideCount);
-
         switch (closedSideCount)
         {
             case 0: legoUnit = Instantiate(_boardManager.FullAllRoundedLego, transform); break;

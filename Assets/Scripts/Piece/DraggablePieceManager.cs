@@ -29,7 +29,7 @@ public static class DraggablePieceManager
     {
         Initialize();
 
-        if(piece.Screwed) { return; }
+        if(piece.Screwed || piece.IsLocked) { return; }
         
         _curDefPiece = piece;
         _isDragging = true;

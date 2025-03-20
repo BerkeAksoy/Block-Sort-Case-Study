@@ -25,6 +25,8 @@ public class SlotPiece : Piece
 
     public bool IsSlotCompleted(PieceColor colorToCheck) // When all the LegoUnits are 1 the slot is considered to be completed.
     {
+        HashSet<DefPiece> defPiecesOnSlot = new HashSet<DefPiece>();
+
         foreach (var slotUnit in GetUnits())
         {
             if (slotUnit.CurLegoValue != 1)
@@ -34,11 +36,18 @@ public class SlotPiece : Piece
 
             foreach(DefLegoUnit heldUnit in slotUnit.HeldLegoUnit)
             {
-                if(heldUnit.LegoColor != colorToCheck)
+                defPiecesOnSlot.Add((DefPiece)heldUnit.PieceParent);
+
+                if (heldUnit.LegoColor != colorToCheck)
                 {
                     return false;
                 }
             }
+        }
+
+        foreach (DefPiece defPiece in defPiecesOnSlot)
+        {
+            defPiece.IsLocked = true;
         }
 
         return true;

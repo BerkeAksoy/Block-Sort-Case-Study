@@ -98,6 +98,11 @@ public class PuzzleTimer : MonoBehaviour
         timerRunning = false;
     }
 
+    public void ContinueTimer()
+    {
+        timerRunning = true;
+    }
+
     public void DisplayWinText()
     {
         StopTimer();

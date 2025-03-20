@@ -16,6 +16,8 @@ public class LevelManager : BaseSingleton<LevelManager>
 
     public int SlotPieceCountToComplete { get => _slotPieceCountToComplete; }
 
+    public event Action OnStageLoad;
+
     [System.Serializable]
     public class LevelData
     {
@@ -92,6 +94,21 @@ public class LevelManager : BaseSingleton<LevelManager>
         return _levelTime;
     }
 
+    public int GetCurrentLevel()
+    {
+        return _currentLevel + 1;
+    }
+
+    public int GetCurrentStage()
+    {
+        return _currentStageIndex + 1;
+    }
+
+    public int GetStageCount()
+    {
+        return _stageCount;
+    }
+
     private void LoadStageFromJson(string json)
     {
         LevelData levelData = JsonUtility.FromJson<LevelData>(json);
@@ -160,6 +177,7 @@ public class LevelManager : BaseSingleton<LevelManager>
             pieceObj.transform.position = new Vector3(pieceData.Position[0], pieceData.Position[1], pieceData.Position[2]);
         }
 
+        OnStageLoad?.Invoke();
         StartCoroutine(CheckPiecesInitPos());
     }
 
