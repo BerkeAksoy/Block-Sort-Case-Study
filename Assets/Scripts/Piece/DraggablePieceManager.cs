@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System;
+using DG.Tweening;
 
 public static class DraggablePieceManager
 {
@@ -82,7 +83,8 @@ public static class DraggablePieceManager
 
         if (IsValidPlacement(ref validPos, true))
         {
-            _curDefPiece.transform.position = validPos.Value;
+            //_curDefPiece.transform.position = validPos.Value;
+            MovePieceToPos(validPos.Value, _curDefPiece);
             _originalPosition = validPos.Value;
 
             _curDefPiece.OnSlot = true;
@@ -95,7 +97,8 @@ public static class DraggablePieceManager
         else
         {
             if (refreshed) { ReApplySlotValues(preValues); _curDefPiece.OnSlot = true; }
-            _curDefPiece.transform.position = _originalPosition;
+            //_curDefPiece.transform.position = _originalPosition;
+            MovePieceToPos(_originalPosition, _curDefPiece, false);
         }
 
         if (_projection != null)
@@ -103,6 +106,26 @@ public static class DraggablePieceManager
         
         _isDragging = false;
         _curDefPiece = null;
+    }
+
+    private static void MovePieceToPos(Vector3 destination, DefPiece defPiece, bool shake = true)
+    {
+        defPiece.transform.DOMove(destination, 0.3f).SetEase(Ease.OutQuad);
+
+        if (shake)
+        {
+            AudioManager.Instance.PlayPieceSnap();
+
+            _curDefPiece.transform.DOShakeRotation(0.2f, new Vector3(0, UnityEngine.Random.Range(-15f, 10f), 0), 4, 20, true).SetDelay(0.15f).OnComplete(() =>
+            {
+                defPiece.transform.rotation = Quaternion.identity;
+            });
+
+            defPiece.transform.DOShakePosition(0.2f, new Vector3(0, 0, UnityEngine.Random.Range(0f, 0.2f)), 10, 90, true).SetDelay(0.15f).OnComplete(() =>
+            {
+                defPiece.transform.position = destination;
+            });
+        }
     }
 
     private static List<int> RefreshOccupiedSlotUnits()
