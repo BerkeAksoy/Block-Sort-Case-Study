@@ -51,6 +51,7 @@ public abstract class Piece : MonoBehaviour
                 if (cellValue == 1)
                 {
                     legoGO = DefineCornersForSquareLego(row, col);
+                    if (legoGO == null) { Debug.Log($"legoGo is null row {row} col {col}"); }
                     legoGO.transform.localPosition = position;
 
                     if (isSlot)
@@ -138,6 +139,8 @@ public abstract class Piece : MonoBehaviour
             }
         }
 
+        Debug.Log(closedSideCount);
+
         switch (closedSideCount)
         {
             case 0: legoUnit = Instantiate(_boardManager.FullAllRoundedLego, transform); break;
@@ -155,7 +158,11 @@ public abstract class Piece : MonoBehaviour
                     legoUnit = Instantiate(_boardManager.FullTwoParallelRoundedLego, transform);
                     legoUnit.transform.Rotate(0, 0, 90);
                 }
-                else if (left && right) { } // By default the hard corners face left and right
+                else if (left && right)
+                {
+                    legoUnit = Instantiate(_boardManager.FullTwoParallelRoundedLego, transform);
+                    // By default the hard corners face left and right
+                }
                 else
                 {
                     legoUnit = Instantiate(_boardManager.FullTwoRoundedLego, transform);
