@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static Piece;
@@ -157,6 +158,22 @@ public class LevelManager : BaseSingleton<LevelManager>
             
             _piecesOnStage.Add(pieceObj);
             pieceObj.transform.position = new Vector3(pieceData.Position[0], pieceData.Position[1], pieceData.Position[2]);
+        }
+
+        StartCoroutine(CheckPiecesInitPos());
+    }
+
+    private IEnumerator CheckPiecesInitPos()
+    {
+        yield return null;
+
+        for(int i = 0; i < _piecesOnStage.Count; i++)
+        {
+            DefPiece defPiece = _piecesOnStage[i].GetComponent<DefPiece>();
+            if (defPiece != null)
+            {
+                defPiece.CheckIfBornOnSlot();
+            }
         }
     }
 

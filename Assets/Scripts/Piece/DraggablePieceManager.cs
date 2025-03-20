@@ -170,9 +170,10 @@ public static class DraggablePieceManager
         }
     }
 
-    private static bool IsValidPlacement(ref Vector3? validPos, bool placePiece = false)
+    public static bool IsValidPlacement(ref Vector3? validPos, bool placePiece = false, DefPiece defPiece = null)
     {
-        List<DefLegoUnit> defLegoUnits = _curDefPiece.GetUnits();
+        if(defPiece == null) { defPiece = _curDefPiece; }
+        List<DefLegoUnit> defLegoUnits = defPiece.GetUnits();
         List<SlotLegoUnit> occupiedSlotUnits = new List<SlotLegoUnit>();
 
         Transform validHit0Transform = null;
@@ -185,15 +186,15 @@ public static class DraggablePieceManager
             Ray ray = new Ray(origin, Vector3.forward);
             RaycastHit hit;
             LayerMask mask = 3; // Slot layer
-            
+
             if (!Physics.Raycast(ray, out hit, 10f, ~mask))
             {
-                //Debug.Log($"I am {legoUnits[i].transform.parent.parent.name}'s legoUnit {i} and I hit nothing");
+                //Debug.Log($"I am {defLegoUnits[i].transform.parent.parent.name}'s legoUnit {i} and I hit nothing {hit.transform}");
                 return false;
             }
             else
             {
-                //Debug.Log($"Congrats!, I am {legoUnits[i].transform.parent.parent.name}'s legoUnit {i} and I hit {hit.transform.name} layer mask of hit is {hit.transform.gameObject.layer}");
+                //Debug.Log($"Congrats!, I am {defLegoUnits[i].transform.parent.parent.name}'s legoUnit {i} and I hit {hit.transform.name} layer mask of hit is {hit.transform.gameObject.layer}");
                 if(i == 0) { validHit0Transform = hit.transform; }
             }
 
@@ -233,7 +234,7 @@ public static class DraggablePieceManager
                 }
             }
 
-            _curDefPiece.OccupiedSlotUnits = occupiedSlotUnits;
+            defPiece.OccupiedSlotUnits = occupiedSlotUnits;
         }
 
         return true; // All legoUnits passed the compatibility test.

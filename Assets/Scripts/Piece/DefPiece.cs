@@ -12,12 +12,6 @@ public class DefPiece : Piece
     public bool OnSlot { get => _onSlot; set => _onSlot = value; }
     public bool Screwed { get => _screwed; }
 
-    public List<DefLegoUnit> GetUnits()
-    {
-        _units = _DefUnits;
-        return _units;
-    }
-
     public override void Initialize(PieceColor color, List<List<int>> shapeArray, bool screwed = false)
     {
         base.Initialize(color, shapeArray);
@@ -27,6 +21,26 @@ public class DefPiece : Piece
 
         SetPieceMaterial();
         CreateLegoUnits(false, screwed);
+    }
+
+    public void CheckIfBornOnSlot()
+    {
+        _originalPosition = transform.position;
+
+        Vector3? validPos = null;
+        bool result = DraggablePieceManager.IsValidPlacement(ref validPos, true, this);
+        if (result)
+        {
+            transform.position = validPos.Value;
+            _originalPosition = validPos.Value;
+            OnSlot = true;
+        }
+    }
+
+    public List<DefLegoUnit> GetUnits()
+    {
+        _units = _DefUnits;
+        return _units;
     }
 
 }

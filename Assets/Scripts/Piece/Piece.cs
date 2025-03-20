@@ -22,6 +22,7 @@ public abstract class Piece : MonoBehaviour
 
     private PieceColor _pieceColor;
     private Material _pieceMat;
+    protected Vector3 _originalPosition;
     private const float _unitSize = 1.0f; // One cubic Lego unit is 1 unit in Unity scale
 
     public List<List<int>> ShapeArray { get =>  _shapeArray; }
