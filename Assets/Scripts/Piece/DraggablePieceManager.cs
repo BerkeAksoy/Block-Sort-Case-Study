@@ -27,6 +27,8 @@ public static class DraggablePieceManager
     public static void StartDrag(DefPiece piece, Vector2 pointerPosition)
     {
         Initialize();
+
+        if(piece.Screwed) { return; }
         
         _curDefPiece = piece;
         _isDragging = true;

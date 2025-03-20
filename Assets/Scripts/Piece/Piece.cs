@@ -27,28 +27,15 @@ public abstract class Piece : MonoBehaviour
     public List<List<int>> ShapeArray { get =>  _shapeArray; }
     public PieceColor PieceClr { get => _pieceColor; }
 
-    public void Initialize(PieceColor color, List<List<int>> shapeArray, bool screwed = false, bool isSlot = false)
+    public virtual void Initialize(PieceColor color, List<List<int>> shapeArray, bool screwed = false)
     {
         _pieceColor = color;
         _shapeArray = shapeArray;
 
-        if (isSlot)
-        {
-            gameObject.tag = "Slot";
-            gameObject.layer = 3;
-        }
-        else
-        {
-            gameObject.tag = "Draggable";
-        }
-
         _boardManager = BoardManager.Instance;
-
-        SetPieceMaterial();
-        CreateLegoUnits(isSlot);
     }
 
-    private void CreateLegoUnits(bool isSlot)
+    protected void CreateLegoUnits(bool isSlot)
     {
         for (int row = 0; row < _shapeArray.Count; row++)
         {
@@ -273,7 +260,7 @@ public abstract class Piece : MonoBehaviour
         halfUnit.transform.localEulerAngles = new Vector3(0, 0, rotationAngle);
     }
 
-    private void SetPieceMaterial()
+    protected void SetPieceMaterial()
     {
         switch (_pieceColor)
         {

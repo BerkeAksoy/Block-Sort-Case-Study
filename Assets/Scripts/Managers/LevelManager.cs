@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using static LevelManager;
 using static Piece;
 
 public class LevelManager : BaseSingleton<LevelManager>
@@ -13,6 +11,7 @@ public class LevelManager : BaseSingleton<LevelManager>
     private int _currentStageIndex;
     private int _slotPieceCountToComplete;
     private float _levelTime;
+    private List<GameObject> _piecesOnStage = new List<GameObject>();
 
     public int SlotPieceCountToComplete { get => _slotPieceCountToComplete; }
 
@@ -51,16 +50,21 @@ public class LevelManager : BaseSingleton<LevelManager>
     {
         TouchManager.Instance.FirstTouch = false;
         _currentStageIndex = 0;
+
         if (_currentLevel >= _levelJson.Length)
         {
             _currentLevel = 0;
         }
+
         LoadStageFromJson(_levelJson[_currentLevel].text);
     }
 
     public void LoadNextStage()
     {
+        WipeStagePieces();
+
         _currentStageIndex++;
+
         if (_currentStageIndex == _stageCount)
         {
             _currentLevel++;
@@ -70,6 +74,16 @@ public class LevelManager : BaseSingleton<LevelManager>
         {
             LoadStageFromJson(_levelJson[_currentLevel].text);
         }
+    }
+
+    private void WipeStagePieces()
+    {
+        foreach(GameObject p in _piecesOnStage)
+        {
+            Destroy(p.gameObject);
+        }
+
+        _piecesOnStage.Clear();
     }
 
     public float GetLevelTime()
@@ -107,7 +121,7 @@ public class LevelManager : BaseSingleton<LevelManager>
         {
             PieceData pieceData = currentStagePieces[i];
 
-            if (pieceData.Position == null || pieceData.Position.Length < 2)
+            if (pieceData.Position == null || pieceData.Position.Length < 3)
             {
                 Debug.LogError("Invalid or missing Position data for a piece at index: " + i);
                 continue;
@@ -120,30 +134,28 @@ public class LevelManager : BaseSingleton<LevelManager>
             }
 
             GameObject pieceObj;
-            Piece piece;
-
-            if (pieceData.IsSlot)
-            {
-                pieceObj = new GameObject("Slot Piece_" + slotLegoCount);
-                piece = pieceObj.AddComponent<SlotPiece>();
-                slotLegoCount++;
-            }
-            else
-            {
-                pieceObj = new GameObject("Def Piece_" + defLegoCount);
-                piece = pieceObj.AddComponent<DefPiece>();
-                defLegoCount++;
-            }
-             
-            pieceObj.transform.position = new Vector3(pieceData.Position[0], pieceData.Position[1], pieceData.Position[2]);
-
             List<List<int>> shapeList = new List<List<int>>();
             ConvertToShapeList(pieceData, ref shapeList);
 
             // Convert string to enum (ensure enum names match exactly)
             PieceColor pieceColor = (PieceColor)Enum.Parse(typeof(PieceColor), pieceData.Color);
 
-            piece.Initialize(pieceColor, shapeList, pieceData.Screwed, pieceData.IsSlot);
+            if (pieceData.IsSlot)
+            {
+                pieceObj = new GameObject("Slot Piece_" + slotLegoCount);
+                SlotPiece newSlotPiece = pieceObj.AddComponent<SlotPiece>();
+                newSlotPiece.Initialize(pieceColor, shapeList, pieceData.Screwed);
+                slotLegoCount++;
+            }
+            else
+            {
+                pieceObj = new GameObject("Def Piece_" + defLegoCount);
+                DefPiece newDefPiece = pieceObj.AddComponent<DefPiece>();
+                newDefPiece.Initialize(pieceColor, shapeList, pieceData.Screwed);
+                defLegoCount++;
+            }
+             
+            pieceObj.transform.position = new Vector3(pieceData.Position[0], pieceData.Position[1], pieceData.Position[2]);
         }
     }
 

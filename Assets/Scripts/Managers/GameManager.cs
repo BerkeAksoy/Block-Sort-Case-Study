@@ -24,7 +24,8 @@ public class GameManager : BaseSingleton<GameManager>
 
     private void CheckWinCondition()
     {
-        if(LevelManager.Instance.SlotPieceCountToComplete == completedSlotCount)
+        completedSlotCount++;
+        if (LevelManager.Instance.SlotPieceCountToComplete == completedSlotCount)
         {
             _timerUI.DisplayWinText();
         }

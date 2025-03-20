@@ -6,6 +6,17 @@ public class SlotPiece : Piece
     [SerializeField] private List<SlotLegoUnit> _units;
     public List<SlotLegoUnit> Units { get => _units; set => _units = value; }
 
+    public override void Initialize(PieceColor color, List<List<int>> shapeArray, bool screwed)
+    {
+        base.Initialize(color, shapeArray);
+
+        gameObject.tag = "Slot";
+        gameObject.layer = 3;
+
+        SetPieceMaterial();
+        CreateLegoUnits(true);
+    }
+
     public List<SlotLegoUnit> GetUnits()
     {
         _units = _slotUnits;
