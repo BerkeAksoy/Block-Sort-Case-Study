@@ -48,6 +48,7 @@ public class SlotPiece : Piece
         foreach (DefPiece defPiece in defPiecesOnSlot)
         {
             defPiece.IsLocked = true;
+            AudioManager.Instance.PlaySlotComplete();
         }
 
         return true;

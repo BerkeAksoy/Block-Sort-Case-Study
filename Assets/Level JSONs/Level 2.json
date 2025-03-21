@@ -1,0 +1,174 @@
+{
+  "LevelTime": 120,
+  "StageCount": 3,
+  "SlotPieceCountToComplete": [1, 2, 1],
+  "Pieces": [
+    {
+      "StagePieces": [
+        {
+          "Color": "Red",
+          "ShapeArray": [
+            { "Row": [1, 0] },
+            { "Row": [1, 0] },
+            { "Row": [1, 4] }
+          ],
+          "Screwed": false,
+          "IsSlot": false,
+          "Position": [-1, 0, 0]
+        },
+        {
+          "Color": "Red",
+          "ShapeArray": [
+            { "Row": [0, 1] },
+            { "Row": [0, 1] },
+            { "Row": [2, 1] }
+          ],
+          "Screwed": false,
+          "IsSlot": false,
+          "Position": [0, 4, 0]
+        },
+        {
+          "Color": "None",
+          "ShapeArray": [
+            { "Row": [1, 0, 1] },
+            { "Row": [1, 0, 1] },
+            { "Row": [1, 1, 1] }
+          ],
+          "Screwed": false,
+          "IsSlot": true,
+          "Position": [-1, 4, 1]
+        },
+        {
+          "Color": "None",
+          "ShapeArray": [
+            { "Row": [1, 1] },
+            { "Row": [1, 1] },
+            { "Row": [1, 1] }
+          ],
+          "Screwed": false,
+          "IsSlot": true,
+          "Position": [-1, 0, 1]
+        }
+      ]
+    },
+    {
+      "StagePieces": [
+        {
+          "Color": "Green",
+          "ShapeArray": [
+            { "Row": [1, 1] },
+            { "Row": [1, 1] }
+          ],
+          "Screwed": false,
+          "IsSlot": false,
+          "Position": [2, 1, 0]
+        },
+        {
+          "Color": "Green",
+          "ShapeArray": [
+            { "Row": [1] },
+            { "Row": [1] }
+          ],
+          "Screwed": false,
+          "IsSlot": false,
+          "Position": [-4, 1, 0]
+        },
+        {
+          "Color": "Yellow",
+          "ShapeArray": [
+            { "Row": [1] },
+            { "Row": [1] }
+          ],
+          "Screwed": true,
+          "IsSlot": false,
+          "Position": [4, 1, 0]
+        },
+        {
+          "Color": "Yellow",
+          "ShapeArray": [
+            { "Row": [1, 1] },
+            { "Row": [1, 1] }
+          ],
+          "Screwed": false,
+          "IsSlot": false,
+          "Position": [-3, 1, 0]
+        },
+        {
+          "Color": "None",
+          "ShapeArray": [
+            { "Row": [1, 1, 1] },
+            { "Row": [1, 1, 1] }
+          ],
+          "Screwed": false,
+          "IsSlot": true,
+          "Position": [2, 1, 1]
+        },
+        {
+          "Color": "None",
+          "ShapeArray": [
+            { "Row": [1, 1, 1] },
+            { "Row": [1, 1, 1] }
+          ],
+          "Screwed": false,
+          "IsSlot": true,
+          "Position": [-4, 1, 1]
+        },
+        {
+          "Color": "None",
+          "ShapeArray": [
+            { "Row": [1, 1, 1] },
+            { "Row": [1, 1, 1] }
+          ],
+          "Screwed": false,
+          "IsSlot": true,
+          "Position": [-1, 4, 1]
+        }
+      ]
+    },
+    {
+      "StagePieces": [
+        {
+          "Color": "Orange",
+          "ShapeArray": [
+            { "Row": [1, 1, 1] },
+            { "Row": [1, 0, 1] },
+            { "Row": [1, 1, 1] }
+          ],
+          "Screwed": true,
+          "IsSlot": false,
+          "Position": [-2, 2, 0]
+        },
+        {
+          "Color": "Orange",
+          "ShapeArray": [
+            { "Row": [1] }
+          ],
+          "Screwed": false,
+          "IsSlot": false,
+          "Position": [2, 2, 0]
+        },
+        {
+          "Color": "None",
+          "ShapeArray": [
+            { "Row": [1, 1] },
+            { "Row": [1, 1] }
+          ],
+          "Screwed": false,
+          "IsSlot": true,
+          "Position": [2, 2, 1]
+        },
+        {
+          "Color": "None",
+          "ShapeArray": [
+            { "Row": [1, 1, 1] },
+            { "Row": [1, 1, 1] },
+            { "Row": [1, 1, 1] }
+          ],
+          "Screwed": false,
+          "IsSlot": true,
+          "Position": [-2, 2, 1]
+        }
+      ]
+    }
+  ]
+}

@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -51,6 +52,8 @@ public class LevelManager : BaseSingleton<LevelManager>
 
     public void LoadLevel()
     {
+        WipeStagePieces();
+
         TouchManager.Instance.FirstTouch = false;
         _currentStageIndex = 0;
 
@@ -60,22 +63,22 @@ public class LevelManager : BaseSingleton<LevelManager>
         }
 
         LoadStageFromJson(_levelJson[_currentLevel].text);
+        PuzzleTimer.Instance.InitTimer();
     }
 
     public void LoadNextStage()
     {
-        WipeStagePieces();
-
         _currentStageIndex++;
 
         if (_currentStageIndex == _stageCount)
         {
             _currentLevel++;
+            WipeStagePieces();
             LoadLevel();
         }
         else
         {
-            LoadStageFromJson(_levelJson[_currentLevel].text);
+            StartCoroutine(SlideStagePieces());
         }
     }
 
@@ -178,7 +181,9 @@ public class LevelManager : BaseSingleton<LevelManager>
         }
 
         OnStageLoad?.Invoke();
-        StartCoroutine(CheckPiecesInitPos());
+
+        BoardManager.Instance.LockTouchable();
+        StartCoroutine(ScaleAnim());
     }
 
     private IEnumerator CheckPiecesInitPos()
@@ -193,6 +198,36 @@ public class LevelManager : BaseSingleton<LevelManager>
                 defPiece.CheckIfBornOnSlot();
             }
         }
+        BoardManager.Instance.UnlockTouchable();
+    }
+
+    private IEnumerator ScaleAnim(float animLength = 0.8f)
+    {
+        for (int i = 0; i < _piecesOnStage.Count; i++)
+        {
+            _piecesOnStage[i].transform.localScale = new Vector3(0, 0, 0);
+            _piecesOnStage[i].transform.DOScale(new Vector3(1, 1, 1), animLength).SetEase(Ease.OutCirc);
+        }
+
+        yield return new WaitForSeconds(animLength);
+
+        StartCoroutine(CheckPiecesInitPos());
+    }
+
+    private IEnumerator SlideStagePieces(float animLength = 1f)
+    {
+        float moveRightTime = 0.4f;
+        for (int i = 0; i < _piecesOnStage.Count; i++)
+        {
+            Transform pieceT = _piecesOnStage[i].transform;
+            pieceT.DOMove(new Vector3(pieceT.position.x + 4f, pieceT.position.y, pieceT.position.z), moveRightTime).SetEase(Ease.InQuad);
+            pieceT.DOMove(new Vector3(pieceT.position.x - 20f, pieceT.position.y, pieceT.position.z), moveRightTime).SetEase(Ease.InCubic).SetDelay(moveRightTime);
+        }
+
+        yield return new WaitForSeconds(animLength);
+
+        WipeStagePieces();
+        LoadStageFromJson(_levelJson[_currentLevel].text);
     }
 
     // Construct the ShapeList from IntArrayWrapper[] to List<List<int>>

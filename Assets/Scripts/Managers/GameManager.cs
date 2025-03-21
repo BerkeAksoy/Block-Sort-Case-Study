@@ -18,7 +18,8 @@ public class GameManager : BaseSingleton<GameManager>
 
     private void Start()
     {
-        _timerUI = GameObject.FindGameObjectWithTag("UI").GetComponent<PuzzleTimer>();
+        _timerUI = PuzzleTimer.Instance;
+        // GameObject.FindGameObjectWithTag("UI").GetComponent<PuzzleTimer>();
         LevelManager.Instance.LoadLevel();
         _timerUI.InitTimer();
     }
@@ -50,5 +51,9 @@ public class GameManager : BaseSingleton<GameManager>
         LevelManager.Instance.LoadNextStage();
     }
 
-
+    public void ReloadLevel()
+    {
+        LevelManager.Instance.LoadLevel();
+        _timerUI.InitTimer();
+    }
 }

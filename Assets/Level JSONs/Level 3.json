@@ -1,0 +1,190 @@
+{
+  "LevelTime": 60,
+  "StageCount": 1,
+  "SlotPieceCountToComplete": [2],
+  "Pieces": [
+    {
+      "StagePieces": [
+        {
+          "Color": "Green",
+          "ShapeArray": [
+            { "Row": [1, 1] },
+            { "Row": [1, 1] }
+          ],
+          "Screwed": false,
+          "IsSlot": false,
+          "Position": [-4, 4, 0]
+        },
+        {
+          "Color": "Green",
+          "ShapeArray": [
+            { "Row": [1, 1] },
+            { "Row": [1, 1] },
+            { "Row": [2, 3] }
+          ],
+          "Screwed": false,
+          "IsSlot": false,
+          "Position": [-3, -2, 0]
+        },
+        {
+          "Color": "Green",
+          "ShapeArray": [
+            { "Row": [1, 1] },
+            { "Row": [1, 1] }
+          ],
+          "Screwed": false,
+          "IsSlot": false,
+          "Position": [1, -3, 0]
+        },
+        {
+          "Color": "Green",
+          "ShapeArray": [
+            { "Row": [1, 0] },
+            { "Row": [1, 0] },
+            { "Row": [1, 4] }
+          ],
+          "Screwed": false,
+          "IsSlot": false,
+          "Position": [-4, -4, 0]
+        },
+        {
+          "Color": "Green",
+          "ShapeArray": [
+            { "Row": [0, 1] },
+            { "Row": [0, 1] },
+            { "Row": [5, 1] }
+          ],
+          "Screwed": false,
+          "IsSlot": false,
+          "Position": [2, -4, 0]
+        },
+        {
+          "Color": "Orange",
+          "ShapeArray": [
+            { "Row": [1] },
+            { "Row": [1] },
+            { "Row": [1] },
+            { "Row": [1] }
+          ],
+          "Screwed": false,
+          "IsSlot": false,
+          "Position": [-1, -3, 0]
+        },
+        {
+          "Color": "Orange",
+          "ShapeArray": [
+            { "Row": [1, 1, 1, 1] }
+          ],
+          "Screwed": false,
+          "IsSlot": false,
+          "Position": [1, -2, 0]
+        },
+        {
+          "Color": "Orange",
+          "ShapeArray": [
+            { "Row": [1, 1, 1] },
+            { "Row": [0, 1, 0] }
+          ],
+          "Screwed": true,
+          "IsSlot": false,
+          "Position": [1, 4, 0]
+        },
+        {
+          "Color": "Orange",
+          "ShapeArray": [
+            { "Row": [1, 1, 1] }
+          ],
+          "Screwed": false,
+          "IsSlot": false,
+          "Position": [1, 1, 0]
+        },
+        {
+          "Color": "Orange",
+          "ShapeArray": [
+            { "Row": [1, 0, 1] },
+            { "Row": [1, 1, 1] }
+          ],
+          "Screwed": false,
+          "IsSlot": false,
+          "Position": [-4, 1, 0]
+        },
+        {
+          "Color": "None",
+          "ShapeArray": [
+            { "Row": [1, 1, 1, 1] },
+            { "Row": [1, 1, 1, 1] },
+            { "Row": [1, 1, 1, 1] },
+            { "Row": [1, 1, 1, 1] },
+            { "Row": [1, 1, 1, 1] }
+          ],
+          "Screwed": false,
+          "IsSlot": true,
+          "Position": [-4, -2, 1]
+        },
+        {
+          "Color": "None",
+          "ShapeArray": [
+            { "Row": [1, 1, 1, 1] },
+            { "Row": [1, 1, 1, 1] },
+            { "Row": [1, 1, 1, 1] },
+            { "Row": [1, 1, 1, 1] },
+            { "Row": [1, 1, 1, 1] }
+          ],
+          "Screwed": false,
+          "IsSlot": true,
+          "Position": [-4, 4, 1]
+        },
+        {
+          "Color": "None",
+          "ShapeArray": [
+            { "Row": [1, 1, 1, 1] },
+            { "Row": [1, 1, 1, 1] },
+            { "Row": [1, 1, 1, 1] },
+            { "Row": [1, 1, 1, 1] },
+            { "Row": [1, 1, 1, 1] }
+          ],
+          "Screwed": false,
+          "IsSlot": true,
+          "Position": [1, 4, 1]
+        },
+        {
+          "Color": "None",
+          "ShapeArray": [
+            { "Row": [1, 1, 1, 1] },
+            { "Row": [1, 1, 1, 1] },
+            { "Row": [1, 1, 1, 1] },
+            { "Row": [1, 1, 1, 1] },
+            { "Row": [1, 1, 1, 1] }
+          ],
+          "Screwed": false,
+          "IsSlot": true,
+          "Position": [1, -2, 1]
+        }
+      ]
+    },
+    {
+      "StagePieces": [
+        {
+          "Color": "Green",
+          "ShapeArray": [
+            { "Row": [1, 1] },
+            { "Row": [1, 1] }
+          ],
+          "Screwed": false,
+          "IsSlot": false,
+          "Position": [3, 0, 0]
+        },
+        {
+          "Color": "None",
+          "ShapeArray": [
+            { "Row": [1, 1, 1] },
+            { "Row": [1, 1, 1] }
+          ],
+          "Screwed": false,
+          "IsSlot": true,
+          "Position": [3, 1, 1]
+        }
+      ]
+    }
+  ]
+}

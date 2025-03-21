@@ -2,7 +2,7 @@ using UnityEngine;
 using System;
 using DG.Tweening;
 
-public class PuzzleTimer : MonoBehaviour
+public class PuzzleTimer : BaseSingleton<PuzzleTimer>
 {
     [SerializeField] private TMPro.TextMeshProUGUI _timerText;
     [SerializeField] private float _warningStart = 30f; // Default to 30 seconds
@@ -26,6 +26,7 @@ public class PuzzleTimer : MonoBehaviour
 
     public void InitTimer()
     {
+        StopTimer();
         currentTime = LevelManager.Instance.GetLevelTime();
         UpdateTimerUI();
     }
