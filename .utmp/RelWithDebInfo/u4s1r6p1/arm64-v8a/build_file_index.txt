@@ -1,0 +1,2 @@
+C:\Users\aksoy\Documents\Unity Workspace\Block Sort Case Study\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\CMakeLists.txt
+C:\Users\aksoy\Documents\Unity Workspace\Block Sort Case Study\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\GameActivity\CMakeLists.txt

@@ -19,17 +19,8 @@ public class GameManager : BaseSingleton<GameManager>
     private void Start()
     {
         _timerUI = PuzzleTimer.Instance;
-        // GameObject.FindGameObjectWithTag("UI").GetComponent<PuzzleTimer>();
         LevelManager.Instance.LoadLevel();
         _timerUI.InitTimer();
-    }
-
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            LevelManager.Instance.LoadNextStage();
-        }
     }
 
     private void CheckWinCondition()
